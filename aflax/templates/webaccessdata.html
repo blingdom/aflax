@@ -1,0 +1,48 @@
+<!--
+    "access": "admin.indexhome", 
+      "created": 1607409567, 
+      "createtime": "06:39:27", 
+      "date": "08-12-2020", 
+      "id": "5fcf1f9fd8a2d95a36f7adb5", 
+      "ipadd": "128.14.134.134", 
+      "method": "GET", 
+      "status": "Active"
+-->
+<table id="example" class="table table-striped table-bordered second" style="width:100%">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Address</th>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for p in data.web -%}
+        <tr>
+            <td>{{p.date}}</td>
+            <td>{{p.createtime}}</td>
+            <td>{{p.ipadd}}</td>
+            <td>{{p.access}}</td>
+            <td>{{p.method}}</td>
+            <td>
+                <button class="btn btn-sm btn-primary" onclick="accessban('{{p.id}}', this);">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </td>
+        </tr>
+        {%- endfor -%}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>IP Address</th>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Admin</th>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,150 @@
+{%- extends "base.html" -%}
+
+{%- block cssscripts -%} 
+{%- include "tablecss.html" -%}
+{%- endblock -%}
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+{%- block content -%}
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Prompts Media</h2>
+                    <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Prompts</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- data table  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">System Prompts Media</h5>
+                        <p></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="table-prompts"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end data table  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    {%- include "footer.html" -%}
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+
+<!--
+    Media Edit Modal
+-->
+<div class="modal fade" id="editPrompt" tabindex="-1" role="dialog" aria-labelledby="editPromptLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="prompt-data"></div>
+    </div>
+</div>
+{%- endblock -%}
+
+
+{%- block jscripts -%}
+
+{%- include "tablejs.html" -%}
+<script type="text/javascript">
+    $(document).ready(function() {
+            recordings(false);
+        });
+
+
+    function recordings (next) {
+
+        $.ajax({
+            url: 'prompts',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                next: next,
+                window: $(window)[0].innerWidth
+            }),
+            success: function (res) {
+                // $("#authform").html(res);
+                // console.log(res);
+                $("#table-prompts").html(res);
+            },
+            error: function () {
+                console.log('Prompts Error');
+            }
+        })
+    }
+
+
+    // View Prompt Data
+
+    function viewprompt (media) {
+
+        $.ajax({
+            url: 'viewprompt',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id: media,
+                window: $(window)[0].innerWidth
+            }),
+            success: function (res) {
+                $("#prompt-data").html(res);
+                $("#editPrompt").modal('show');
+            },
+            error: function () {
+                console.log('Prompts View Error');
+            }
+        })
+    }
+
+    // Edit Prompt Data
+
+    function editprompt (media) {
+
+        $.ajax({
+            url: 'editmedia',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                id: media,
+                window: $(window)[0].innerWidth
+            }),
+            success: function (res) {
+                $("#editPrompt").modal('close')
+            },
+            error: function () {
+                console.log('Prompts Editor Error');
+            }
+        })
+    }
+
+</script>
+
+{%- endblock -%}

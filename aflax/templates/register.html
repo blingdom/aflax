@@ -1,0 +1,45 @@
+<div class="card-header text-center">
+    <a href="#!">
+        <img class="logo-img" src="{{ url_for('static', filename='aassets/images/logo.png') }}" alt="logo">
+    </a>
+    <span class="splash-description">Register An Account</span>
+</div>
+<div class="card-body">
+    <form>
+
+        <div class="form-group">
+            <input class="form-control form-control-lg" type="email" id="email" required="" placeholder="E-mail" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control form-control-lg" id="passone" type="password" required="" placeholder="Password">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control form-control-lg" id="passtwo" type="password" required="" placeholder="Repeat Password">
+        </div>
+        
+        <div class="form-group">
+            <label class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox"><span class="custom-control-label">By creating an account, you agree the <a href="#">terms and conditions</a></span>
+            </label>
+        </div>
+
+    </form>
+
+    <div class="form-group pt-2">
+        <button class="btn btn-block btn-primary" onclick="iRegister();">REGISTER</button>
+    </div>
+    
+</div>
+<div class="card-footer bg-white p-0">
+
+    <div class="card-footer-item card-footer-item-bordered">
+        <a href="!#" class="footer-link" onclick="iforms('login', this);">Login Account</a>
+    </div>
+
+    <div class="card-footer-item card-footer-item-bordered">
+        <a href="!#" class="footer-link" onclick="iforms('forgot', this);">Forgot Password</a>
+    </div>
+
+</div>

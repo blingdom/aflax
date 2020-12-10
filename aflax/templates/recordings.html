@@ -1,0 +1,134 @@
+{%- extends "base.html" -%}
+
+{%- block cssscripts -%} 
+{%- include "tablecss.html" -%}
+{%- endblock -%}
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+{%- block content -%}
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Recordings Media</h2>
+                    <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Recordings</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- data table  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Users Media Recordings</h5>
+                        <p></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="table-recordings">
+                            <!--table id="example" class="table table-striped table-bordered second" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Phone</th>
+                                        <th>Started</th>
+                                        <th>Stopped</th>
+                                        <th>Status</th>
+                                        <th>Admin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>01-12-2020</td>
+                                        <td>254700100200</td>
+                                        <td>00:12</td>
+                                        <td>00:15</td>
+                                        <td>Offline</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">
+                                                <i class="fa fa-fw fa-eye"></i>
+                                                <span class="badge badge-success">View</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Phone</th>
+                                        <th>Started</th>
+                                        <th>Stopped</th>
+                                        <th>Status</th>
+                                        <th>Admin</th>
+                                    </tr>
+                                </tfoot>
+                            </table-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end data table  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    {%- include "footer.html" -%}
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+</div>
+{%- endblock -%}
+
+{%- block jscripts -%}
+
+{%- include "tablejs.html" -%}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+            recordings(false);
+        });
+
+
+    function recordings (next) {
+
+        $.ajax({
+            url: 'recordings',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                next: next,
+                window: $(window)[0].innerWidth
+            }),
+            success: function (res) {
+                // $("#authform").html(res);
+                // console.log(res);
+                $("#table-recordings").html(res);
+            },
+            error: function () {
+                console.log('Recordings Error');
+            }
+        })
+    }
+</script>
+
+{%- endblock -%}

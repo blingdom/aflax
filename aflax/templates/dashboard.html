@@ -1,0 +1,199 @@
+{%- extends "base.html" -%}
+
+{%- block cssscripts -%}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/vector-map/jqvmap.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css') }}">
+{%- endblock -%}
+
+<!-- ============================================================== -->
+<!-- wrapper  -->
+<!-- ============================================================== -->
+{%- block content -%}
+<div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
+        <!-- ============================================================== -->
+        <!-- pagehader  -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h3 class="mb-2">Main Dashboard</h3>
+                    <p class="pageheader-text">Lorem ipsum dolor sit ametllam fermentum ipsum eu porta consectetur adipiscing elit.Nullam vehicula nulla ut egestas rhoncus.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- pagehader  -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- metric -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted">Callers</h5>
+                        <div class="metric-value d-inline-block">
+                            <h1 class="mb-1 text-primary">101 </h1>
+                        </div>
+                        <div class="metric-label d-inline-block float-right text-success">
+                            <i class="fa fa-fw fa-caret-up"></i><span>5.27%</span>
+                        </div>
+                    </div>
+                    <div id="sparkline-1"></div>
+                </div>
+            </div>
+            <!-- /. metric -->
+            <!-- metric -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted">Prompts</h5>
+                        <div class="metric-value d-inline-block">
+                            <h1 class="mb-1 text-primary">42</h1>
+                        </div>
+                        <div class="metric-label d-inline-block float-right text-danger">
+                            <i class="fa fa-fw fa-caret-down"></i><span>1.08%</span>
+                        </div>
+                    </div>
+                    <div id="sparkline-2"></div>
+                </div>
+            </div>
+            <!-- /. metric -->
+            <!-- metric -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted">Recordings</h5>
+                        <div class="metric-value d-inline-block">
+                            <h1 class="mb-1 text-primary">56</h1>
+                        </div>
+                        <div class="metric-label d-inline-block float-right text-danger">
+                            <i class="fa fa-fw fa-caret-down"></i><span>7.00%</span>
+                        </div>
+                    </div>
+                    <div id="sparkline-3">
+                    </div>
+                </div>
+            </div>
+            <!-- /. metric -->
+            <!-- metric -->
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-muted">Security</h5>
+                        <div class="metric-value d-inline-block">
+                            <h1 class="mb-1 text-primary">+28.45% </h1>
+                        </div>
+                        <div class="metric-label d-inline-block float-right text-success">
+                            <i class="fa fa-fw fa-caret-up"></i><span>4.87%</span>
+                        </div>
+                    </div>
+                    <div id="sparkline-4"></div>
+                </div>
+            </div>
+            <!-- /. metric -->
+        </div>
+                <!-- ============================================================== -->
+                <!-- revenue  -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-8 col-lg-12 col-md-8 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Calls</h5>
+                            <div class="card-body">
+                                <canvas id="revenue" width="400" height="150"></canvas>
+                            </div>
+                            <div class="card-body border-top">
+                                <div class="row">
+                                    <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 p-3">
+                                        <h4> Today's Calls: 30</h4>
+                                        <p>Suspendisse potenti. Done csit amet rutrum.</p>
+                                    </div>
+                                    <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
+                                        <h2 class="font-weight-normal mb-3"><span>25</span></h2>
+                                        <div class="mb-0 mt-3 legend-item">
+                                            <span class="fa-xs text-primary mr-1 legend-title ">
+                                                <i class="fa fa-fw fa-square-full"></i>
+                                            </span>
+                                            <span class="legend-text">Current Week</span></div>
+                                    </div>
+                                    <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
+                                        <h2 class="font-weight-normal mb-3"><span>567</span></h2>
+                                        <div class="text-muted mb-0 mt-3 legend-item"> <span class="fa-xs text-secondary mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Previous Week</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end reveune  -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- total sale  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-4 col-lg-12 col-md-4 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Total Recordings</h5>
+                            <div class="card-body">
+                                <canvas id="total-sale" width="220" height="155"></canvas>
+                                <div class="chart-widget-list">
+                                    <p>
+                                        <span class="fa-xs text-primary mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span><span class="legend-text"> Direct</span>
+                                        <span class="float-right">56</span>
+                                    </p>
+                                    <p>
+                                        <span class="fa-xs text-secondary mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span>
+                                        <span class="legend-text">Affilliate</span>
+                                        <span class="float-right">18</span>
+                                    </p>
+                                    <p>
+                                        <span class="fa-xs text-brand mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span> <span class="legend-text">Sponsored</span>
+                                        <span class="float-right">96</span>
+                                    </p>
+                                    <p class="mb-0">
+                                        <span class="fa-xs text-info mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span> <span class="legend-text"> Logins</span>
+                                        <span class="float-right">12</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end total sale  -->
+                    <!-- ============================================================== -->
+                </div>
+            </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    {%- include "footer.html" -%}
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end wrapper  -->
+    <!-- ============================================================== -->
+{%- endblock -%}
+    <!-- Optional JavaScript -->
+
+{%- block jscripts -%}
+<!-- chartjs js-->
+<script src="{{ url_for('static', filename='assets/vendor/charts/charts-bundle/Chart.bundle.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/charts/charts-bundle/chartjs.js') }}"></script>
+<!-- jvactormap js-->
+<script src="{{ url_for('static', filename='assets/vendor/jvectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- sparkline js-->
+<script src="{{ url_for('static', filename='assets/vendor/charts/sparkline/jquery.sparkline.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/vendor/charts/sparkline/spark-js.js') }}"></script>
+<!-- dashboard sales js-->
+<script src="{{ url_for('static', filename='assets/libs/js/dashboard-sales.js') }}"></script>
+{%- endblock -%}

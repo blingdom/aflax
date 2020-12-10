@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>Aflatoxin Information | Login </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/fonts/circular-std/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/libs/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card" id="authform">
+            
+        </div>
+    </div>
+  
+    <!-- ============================================================== -->
+    <!-- end login page  -->
+    <!-- ============================================================== -->
+
+    <script src="{{ url_for('static', filename='assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            iforms('login');
+        });
+
+
+        function iforms (auth) {
+
+            $.ajax({
+                url: 'indexform',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    item: auth,
+                    window: $(window)[0].innerWidth
+                }),
+                success: function (res) {
+                    $("#authform").html(res);
+                },
+                error: function () {
+                    //navError('indexlanding');
+                }
+            })
+        }
+
+
+        function iLogin() {
+            // Login Account Function
+            var uname = $("#username").val();
+            var pass = $("#password").val();
+
+            $.ajax({
+                url: 'indexlogin',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    username: uname,
+                    password: pass,
+                    window: $(window)[0].innerWidth
+                }),
+                success: function (res) {
+                    window.location.href = "/dashboard"
+                },
+                error: function () {
+                }
+            })
+        }
+
+
+        function iRegister() {
+            // Register Account Function
+            var username = $("#email").val();
+            var passone = $("#passone").val();
+            var passtwo = $("#passtwo").val();
+
+            $.ajax({
+                url: 'indexregister',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    username: username,
+                    password: passone,
+                    window: $(window)[0].innerWidth
+                }),
+                success: function (res) {
+                    $("#authform").html(res);
+                },
+                error: function () {
+                }
+            })
+        }
+
+
+        function iForgot() {
+            // Forgot Password Function
+            var email = $("#email").val();
+
+            $.ajax({
+                url: 'indexforgot',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    email: email,
+                    window: $(window)[0].innerWidth
+                }),
+                success: function (res) {
+                    $("#authform").html(res);
+                },
+                error: function () {
+                }
+            })
+        }
+
+
+        function iReset() {
+            // Reset Password Function
+            var email = $("#email").val();
+
+            $.ajax({
+                url: 'indexforgot',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    email: email,
+                    window: $(window)[0].innerWidth
+                }),
+                success: function (res) {
+                    $("#authform").html(res);
+                },
+                error: function () {
+                }
+            })
+        }
+
+    </script>
+</body>
+ 
+</html>

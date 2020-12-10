@@ -1,0 +1,41 @@
+<table id="example" class="table table-striped table-bordered second" style="width:100%">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Prompt</th>
+            <th>Language</th>
+            <th>Type</th>
+            <th>Length</th>
+            <th>Played</th>
+            <th>Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%- for p in data.media -%}
+        <tr>
+            <td>{{p.createdate}}</td>
+            <td>{{p.media}}</td>
+            <td>{{p.language}}</td>
+            <td>{{p.status}}</td>
+            <td>{{p.length}}</td>
+            <td>0</td>
+            <td>
+                <button class="btn btn-sm btn-primary" onclick="viewprompt('{{p.id}}', this);">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </td>
+        </tr>
+        {%- endfor -%}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Date</th>
+            <th>Prompt</th>
+            <th>Language</th>
+            <th>Type</th>
+            <th>Length</th>
+            <th>Played</th>
+            <th>Admin</th>
+        </tr>
+    </tfoot>
+</table>
